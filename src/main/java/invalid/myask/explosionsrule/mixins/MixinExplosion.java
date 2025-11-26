@@ -10,6 +10,7 @@ import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -20,6 +21,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 public class MixinExplosion {
     @Shadow
     public Entity exploder;
+    @Shadow
+    private World worldObj;
 
     @Unique Object explosionsRule$lastExplode = null;
     @Unique boolean explosionsRule$creeper = true;
@@ -35,7 +38,7 @@ public class MixinExplosion {
     private float explosionsRule$NewChance(float chance) {
         if (this != explosionsRule$lastExplode) {
             explosionsRule$lastExplode = this;
-            GameRules rules = exploder.worldObj.getWorldInfo().getGameRulesInstance();
+            GameRules rules = worldObj.getWorldInfo().getGameRulesInstance();
 
             explosionsRule$creeper = rules.getGameRuleBooleanValue("creeperExplosionDropDecay");
             explosionsRule$mob = rules.getGameRuleBooleanValue("mobExplosionDropDecay");
