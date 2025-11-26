@@ -30,7 +30,7 @@ public class CommonProxy {
         rules.addGameRule("blockExplosionDropDecay", "true");
         rules.addGameRule("mobExplosionDropDecay", "true");
         rules.addGameRule("tntExplosionDropDecay", "false");
-        rules.addGameRule("creeperExplosiondropDecay", "true");
+        rules.addGameRule("creeperExplosionDropDecay", "true");
         rules.addGameRule("playerFireballExplosionDropDecay", "false");
     }
 }
